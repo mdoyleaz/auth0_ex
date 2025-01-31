@@ -117,6 +117,15 @@ defmodule Auth0Ex.Management.User do
   end
 
   @doc """
+    Assign roles associated with a user. Scopes: update:users create:role_members
+
+      iex > Auth0Ex.Management.User.update_roles("auth0|23423", %{roles: ["rolid_1", "role_id_2]})
+  """
+  def assign_roles(user_id, body) when is_map(body) do
+    do_post("#{@path}/#{user_id}/roles", body)
+  end
+
+  @doc """
     Deletes all users MFA authentication methods. Scopes: delete:authentication_methods
 
       iex > Auth0Ex.Management.User.delete_authentication_methods("auth0|23423")
